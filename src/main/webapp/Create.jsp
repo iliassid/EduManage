@@ -80,7 +80,7 @@
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary">Enregistrer</button>
-                            <a href="index.jsp" class="btn btn-light">Annuler</a>
+                            <a href="list.jsp" class="btn btn-light">Annuler</a>
                         </div>
                     </form>
                 </div>

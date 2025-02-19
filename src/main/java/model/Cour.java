@@ -1,29 +1,42 @@
 package model;
 
 public class Cour {
+    private int id;
+    private String nomCour;
+    private String descriprion;
 
-    private String courName;
-    private String description;
-
-    public Cour(String courName, String description) {
-        this.courName = courName;
-        this.description = description;
+    public Cour(int id, String nomCour, String descriprion) {
+        this.id = id;
+        this.nomCour = nomCour;
+        this.descriprion = descriprion;
     }
 
-    public String getCourName() {
-        return courName;
+    public Cour(String nomCour, String descriprion) {
+        this.nomCour = nomCour;
+        this.descriprion = descriprion;
     }
 
-    public void setCourName(String courName) {
-        this.courName = courName;
+    public int getId() {
+        return id;
     }
 
-    public String getDescription() {
-        return description;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getNomCour() {
+        return nomCour;
     }
 
+    public void setNomCour(String nomCour) {
+        this.nomCour = nomCour;
+    }
+
+    public String getDescriprion() {
+        return descriprion;
+    }
+
+    public void setDescriprion(String descriprion) {
+        this.descriprion = descriprion;
+    }
 }
