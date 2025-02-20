@@ -14,7 +14,7 @@
 
 
         <ul class="navbar-nav">
-            <li><a href="<%=request.getContextPath()%>/list" class="nav-link" >Studiant</a></li>
+            <li><a href="<%=request.getContextPath()%>/list" class="nav-link" >Cours</a></li>
         </ul>
     </nav>
 </header>
@@ -23,7 +23,7 @@
 <div class="row">
 
     <div class="container">
-        <h3 class="text-center">List of Studiants</h3>
+        <h3 class="text-center">List of cours</h3>
         <hr>
         <div class="container text-left">
 
