@@ -15,6 +15,8 @@
 
         <ul class="navbar-nav">
             <li><a href="<%=request.getContextPath()%>/list" class="nav-link" >Cours</a></li>
+            <li><a href="<%=request.getContextPath()%>/" class="nav-link" >Home</a></li>
+
         </ul>
     </nav>
 </header>

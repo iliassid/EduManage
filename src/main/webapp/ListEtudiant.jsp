@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.List" %>
 <%@ page import="model.Etudiant" %>
+<%@ page import="java.util.List" %>
 <html>
 <head>
     <title>Student List</title>
@@ -10,7 +10,9 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
         <ul class="navbar-nav">
-            <li><a href="<%= request.getContextPath() %>/etudiant/new" class="nav-link">Add Student</a></li>
+            <li><a href="<%= request.getContextPath() %>/listEtudiant" class="nav-link"> Student</a></li>
+            <li><a href="<%=request.getContextPath()%>/" class="nav-link" >Home</a></li>
+
         </ul>
     </nav>
 </header>
@@ -30,7 +32,7 @@
         </thead>
         <tbody>
         <%
-            List<Etudiant> listEtudiants = (List<Etudiant>) request.getAttribute("listEtudiants");
+            List<Etudiant> listEtudiants = (List<Etudiant>) request.getAttribute("listEtudiant");
             if (listEtudiants != null) {
                 for (Etudiant etudiant : listEtudiants) {
         %>
@@ -41,8 +43,8 @@
             <td><%= etudiant.getEmail() %></td>
             <td><%= etudiant.getNaissance() %></td>
             <td>
-                <a href="<%= request.getContextPath() %>/etudiant/edit?id=<%= etudiant.getId() %>">Edit</a>
-                <a href="<%= request.getContextPath() %>/etudiant/delete?id=<%= etudiant.getId() %>">Delete</a>
+                <a href="<%= request.getContextPath() %>/etudiant/edit?idEtudiant=<%= etudiant.getId() %>">Edit</a>
+                <a href="<%= request.getContextPath() %>/etudiant/delete?idEtudiant=<%= etudiant.getId() %>">Delete</a>
             </td>
         </tr>
         <%

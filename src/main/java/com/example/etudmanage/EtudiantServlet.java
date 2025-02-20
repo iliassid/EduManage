@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import DAO.EduManageDAO;
 import DAO.EtudiantDao;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -15,11 +16,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.Etudiant;
 import model.Cour;
 
-@WebServlet("/etudiant/*")
+@WebServlet("/etudiant")
 public class EtudiantServlet extends HttpServlet {
     private EtudiantDao etudiantDao;
 
     public void init() {
+        etudiantDao = new EtudiantDao();
+    }
+    public EtudiantServlet(){
         etudiantDao = new EtudiantDao();
     }
 
@@ -28,39 +32,39 @@ public class EtudiantServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String action = request.getPathInfo();
+        String action = request.getServletPath();
+        switch (action) {
+            case "/new":
+                showNewForm(request, response);
+                break;
+            case "/insertEtudiant":
+                try {
+                    insertEtudiant(request,response);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            case "/delete":
 
-        try {
-            if (action == null) {
-                response.sendRedirect(request.getContextPath() + "/etudiant/list");
-                return;
-            }
+                break;
+            case "/edit":
 
-            switch (action) {
-                case "/new":
-                    showNewForm(request, response);
-                    break;
-                case "/insert":
-                    insertEtudiant(request, response);
-                    break;
-                case "/delete":
-                    deleteEtudiant(request, response);
-                    break;
-                case "/edit":
-                    showEditForm(request, response);
-                    break;
-                case "/update":
-                    updateEtudiant(request, response);
-                    break;
-                case "/list":
-                    listEtudiant(request, response);
-                    break;
-                default:
-                    response.sendRedirect(request.getContextPath() + "/etudiant/list");
-                    break;
-            }
-        } catch (SQLException e) {
-            throw new ServletException(e);
+                break;
+            case "/update":
+
+                break;
+
+            case "/list":
+                try {
+                    listEtudiant(request,response);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+
+            default:
+
+                break;
         }
     }
 
@@ -89,14 +93,14 @@ public class EtudiantServlet extends HttpServlet {
         Etudiant newEtudiant = new Etudiant(0, cours, naissance, email, prenom, nom);
         etudiantDao.insertEtudiant(newEtudiant);
 
-        response.sendRedirect(request.getContextPath() + "/etudiant/list");
+        response.sendRedirect(request.getContextPath() + "/listEtudiant");
     }
 
     private void deleteEtudiant(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         etudiantDao.deleteEtudiant(id);
-        response.sendRedirect(request.getContextPath() + "/etudiant/list");
+        response.sendRedirect(request.getContextPath() + "/listEtudiant");
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
