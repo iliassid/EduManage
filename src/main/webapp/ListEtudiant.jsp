@@ -10,7 +10,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
         <ul class="navbar-nav">
-            <li><a href="<%= request.getContextPath() %>/listEtudiant" class="nav-link"> Student</a></li>
+            <li><a href="<%= request.getContextPath() %>?action=listEtudiants" class="nav-link"> Student</a></li>
             <li><a href="<%=request.getContextPath()%>/" class="nav-link" >Home</a></li>
 
         </ul>
@@ -18,7 +18,13 @@
 </header>
 <br>
 <div class="container">
+    <a href="<%= request.getContextPath() %>/etudiant?action=new" class="btn btn-success">Add New Student</a>
+
     <h2>Student List</h2>
+    <div class="container text-left">
+
+
+    </div>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -32,7 +38,7 @@
         </thead>
         <tbody>
         <%
-            List<Etudiant> listEtudiants = (List<Etudiant>) request.getAttribute("listEtudiant");
+            List<Etudiant> listEtudiants = (List<Etudiant>) request.getAttribute("listEtudiants");
             if (listEtudiants != null) {
                 for (Etudiant etudiant : listEtudiants) {
         %>

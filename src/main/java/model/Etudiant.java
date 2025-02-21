@@ -19,6 +19,13 @@ public class Etudiant {
         this.nom = nom;
     }
 
+    public Etudiant(String nom, String prenom, String email, String naissance) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.naissance = naissance;
+    }
+
     public int getId() {
         return id;
     }
