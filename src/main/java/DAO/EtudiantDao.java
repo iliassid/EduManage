@@ -41,20 +41,7 @@ public class EtudiantDao {
             stmtEtudiant.setString(4, etudiant.getNaissance());
             stmtEtudiant.executeUpdate();
 
-<<<<<<< HEAD
-            // Retrieve the generated student ID
 
-
-                try (PreparedStatement stmtInscription = connection.prepareStatement(sqlInscription)) {
-                    for (Cour cour : etudiant.getCours()) {
-                        stmtInscription.setInt(1, cour.getId());
-                        stmtInscription.setInt(2, etudiant.getId());
-                        stmtInscription.setDate(3, new java.sql.Date(System.currentTimeMillis())); // Enrollment date
-                        stmtInscription.executeUpdate();
-                    }
-                }
-            }
-=======
 
 
             try (PreparedStatement stmtInscription = connection.prepareStatement(sqlInscription)) {
@@ -66,7 +53,7 @@ public class EtudiantDao {
                 }
             }
         }
->>>>>>> 00a8832e20714d4760a01a254dc5ee2d915dca55
+
 
 
     }

@@ -72,7 +72,7 @@ public class EtudiantServlet extends HttpServlet {
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("creationEtudiant.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("createEtudiant.jsp");
 
         dispatcher.forward(request, response);
     }
