@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Cours Management Application</title>
+  <title>Application de gestion de cours</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
 <div class="container col-md-5">
   <div class="card">
     <div class="card-body">
-      <h1> Add Cours</h1>
+      <h1> Ajouter des cours</h1>
 
       <form action="<%= request.getContextPath() %>/insert" method="post">
         <input type="hidden" name="id" >

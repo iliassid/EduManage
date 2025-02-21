@@ -113,7 +113,7 @@
       <div class="card-icon">
         <i class="fas fa-book"></i>
       </div>
-      <h5 class="card-title">Manage Courses</h5>
+      <h5 class="card-title">Gerer les cours</h5>
       <p class="card-text">Access and manage your course catalog, update materials, and track course performance.</p>
     </div>
   </div>
@@ -123,8 +123,8 @@
       <div class="card-icon">
         <i class="fas fa-user-graduate"></i>
       </div>
-      <h5 class="card-title">Manage Students</h5>
-      <p class="card-text">View student profiles, track progress, and manage enrollment and attendance records.</p>
+      <h5 class="card-title">Gerer les etudiants</h5>
+      <p class="card-text">Consultez les profils des etudiants, suivez leurs progres et gerez les inscriptions et les presences.</p>
     </div>
   </div>
 </div>
