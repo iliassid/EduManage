@@ -30,7 +30,7 @@ public class EtudiantDao {
     // Insert a new student and enroll them in courses
     public void insertEtudiant(Etudiant etudiant) throws SQLException {
         String sqlEtudiant = "INSERT INTO etudiant (nomEtudiant, prenom, email, dateNaissance) VALUES (?, ?, ?, ?)";
-        String sqlInscription = "INSERT INTO inscrit (idCour, idEtudiant, dateInscr) VALUES (?, ?, ?)";
+//        String sqlInscription = "INSERT INTO inscrit (idCour, idEtudiant, dateInscr) VALUES (?, ?, ?)";
 
         try (Connection connection = getConnection();
              PreparedStatement stmtEtudiant = connection.prepareStatement(sqlEtudiant)) {
@@ -42,19 +42,17 @@ public class EtudiantDao {
             stmtEtudiant.executeUpdate();
 
 
+//            try (PreparedStatement stmtInscription = connection.prepareStatement(sqlInscription)) {
+//                for (Cour cour : etudiant.getCours()) {
+//                    stmtInscription.setInt(1, cour.getId());
+//                    stmtInscription.setInt(2, etudiant.getId());
+//                    stmtInscription.setDate(3, new java.sql.Date(System.currentTimeMillis())); // Enrollment date
+//                    stmtInscription.executeUpdate();
+//                }
+//            }
+//        }
 
-
-            try (PreparedStatement stmtInscription = connection.prepareStatement(sqlInscription)) {
-                for (Cour cour : etudiant.getCours()) {
-                    stmtInscription.setInt(1, cour.getId());
-                    stmtInscription.setInt(2, etudiant.getId());
-                    stmtInscription.setDate(3, new java.sql.Date(System.currentTimeMillis())); // Enrollment date
-                    stmtInscription.executeUpdate();
-                }
-            }
         }
-
-
 
     }
 

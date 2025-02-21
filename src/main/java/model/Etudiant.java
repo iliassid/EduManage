@@ -10,6 +10,13 @@ public class Etudiant {
     private String naissance;
     List<Cour> cours;
 
+    public Etudiant(String nom, String prenom, String email, String naissance) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.naissance = naissance;
+    }
+
     public Etudiant(int id, List<Cour> cours, String naissance, String email, String prenom, String nom) {
         this.id = id;
         this.cours = cours;
@@ -19,12 +26,8 @@ public class Etudiant {
         this.nom = nom;
     }
 
-    public Etudiant(String nom, String prenom, String email, String naissance) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.naissance = naissance;
-    }
+
+
 
     public int getId() {
         return id;

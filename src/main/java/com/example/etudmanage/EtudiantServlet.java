@@ -94,9 +94,12 @@ public class EtudiantServlet extends HttpServlet {
         String prenom = request.getParameter("prenom");
         String email = request.getParameter("email");
         String naissance = request.getParameter("dateNaissance");
+
+       // List<Cour> cours = new ArrayList<>();
         Etudiant newEtudiant = new Etudiant(nom,prenom,email,naissance);
         etudiantDao.insertEtudiant(newEtudiant);
-        response.sendRedirect(request.getContextPath() + "list");
+
+        response.sendRedirect(request.getContextPath() + "/etudiant?action=list");
     }
 
 
