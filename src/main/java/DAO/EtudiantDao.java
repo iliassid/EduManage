@@ -33,14 +33,15 @@ public class EtudiantDao {
         String sqlInscription = "INSERT INTO inscrit (idCour, idEtudiant, dateInscr) VALUES (?, ?, ?)";
 
         try (Connection connection = getConnection();
-             PreparedStatement stmtEtudiant = connection.prepareStatement(sqlEtudiant, Statement.RETURN_GENERATED_KEYS)) {
-
+             PreparedStatement stmtEtudiant = connection.prepareStatement(sqlEtudiant)) {
+            System.out.println("dddd");
             stmtEtudiant.setString(1, etudiant.getNom());
             stmtEtudiant.setString(2, etudiant.getPrenom());
             stmtEtudiant.setString(3, etudiant.getEmail());
             stmtEtudiant.setString(4, etudiant.getNaissance());
             stmtEtudiant.executeUpdate();
 
+<<<<<<< HEAD
             // Retrieve the generated student ID
 
 
@@ -53,6 +54,19 @@ public class EtudiantDao {
                     }
                 }
             }
+=======
+
+
+            try (PreparedStatement stmtInscription = connection.prepareStatement(sqlInscription)) {
+                for (Cour cour : etudiant.getCours()) {
+                    stmtInscription.setInt(1, cour.getId());
+                    stmtInscription.setInt(2, etudiant.getId());
+                    stmtInscription.setDate(3, new java.sql.Date(System.currentTimeMillis())); // Enrollment date
+                    stmtInscription.executeUpdate();
+                }
+            }
+        }
+>>>>>>> 00a8832e20714d4760a01a254dc5ee2d915dca55
 
 
     }

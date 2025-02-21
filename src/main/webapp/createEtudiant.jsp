@@ -8,7 +8,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
         <ul class="navbar-nav">
-            <li><a href="<%=request.getContextPath()%>/listEtudiant" class="nav-link">Students</a></li>
+            <li><a href="<%=request.getContextPath()%>/list" class="nav-link">Students</a></li>
         </ul>
     </nav>
 </header>
@@ -16,10 +16,10 @@
 <div class="container col-md-5">
     <div class="card">
         <div class="card-body">
-            <form action="<%= request.getContextPath() %>/insertEtudiant" method="post">
+            <form action="<%= request.getContextPath() %>/etudiant?action=insertEtudiant" method="post">
                 <fieldset class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" name="nom" required>
+                    <input type="text" class="form-control" name="nomEtudiant" required>
                 </fieldset>
                 <fieldset class="form-group">
                     <label>First Name</label>

@@ -32,29 +32,31 @@ public class EtudiantServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String action = request.getServletPath();
+        String action = request.getParameter("action");
+        System.out.println(action);
+        System.out.println("it is working");
         switch (action) {
-            case "/new":
+            case "new":
                 showNewForm(request, response);
                 break;
-            case "/insertEtudiant":
+            case "insertEtudiant":
                 try {
                     insertEtudiant(request,response);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
                 break;
-            case "/delete":
+            case "delete":
 
                 break;
-            case "/edit":
+            case "edit":
 
                 break;
-            case "/update":
+            case "update":
 
                 break;
 
-            case "/list":
+            case "list":
                 try {
                     listEtudiant(request,response);
                 } catch (SQLException e) {
@@ -70,60 +72,39 @@ public class EtudiantServlet extends HttpServlet {
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/creationEtudiant.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("creationEtudiant.jsp");
+
         dispatcher.forward(request, response);
     }
 
+
     private void listEtudiant(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
+
+        System.out.println("it is working");
         List<Etudiant> listEtudiants = etudiantDao.selectAllEtudiants();
         request.setAttribute("listEtudiants", listEtudiants);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/listEtudiants.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("ListEtudiant.jsp");
         dispatcher.forward(request, response);
     }
 
     private void insertEtudiant(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        String nom = request.getParameter("nom");
+        String nom = request.getParameter("nomEtudiant");
         String prenom = request.getParameter("prenom");
         String email = request.getParameter("email");
         String naissance = request.getParameter("dateNaissance");
 
         List<Cour> cours = new ArrayList<>();
-        Etudiant newEtudiant = new Etudiant(0, cours, naissance, email, prenom, nom);
+        Etudiant newEtudiant = new Etudiant(nom,prenom,email,naissance);
         etudiantDao.insertEtudiant(newEtudiant);
 
-        response.sendRedirect(request.getContextPath() + "/listEtudiant");
+        response.sendRedirect(request.getContextPath() + "/etudiant/listEtudiant");
     }
 
-    private void deleteEtudiant(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        etudiantDao.deleteEtudiant(id);
-        response.sendRedirect(request.getContextPath() + "/listEtudiant");
-    }
 
-    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Etudiant existingEtudiant = etudiantDao.selectEtudiant(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/editEtudiant.jsp");
-        request.setAttribute("etudiant", existingEtudiant);
-        dispatcher.forward(request, response);
-    }
 
-    private void updateEtudiant(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String email = request.getParameter("email");
-        String naissance = request.getParameter("dateNaissance");
 
-        List<Cour> cours = new ArrayList<>();
-        Etudiant etudiant = new Etudiant(id, cours, naissance, email, prenom, nom);
-        etudiantDao.updateEtudiant(etudiant);
 
-        response.sendRedirect(request.getContextPath() + "/etudiant/list");
-    }
+
 }

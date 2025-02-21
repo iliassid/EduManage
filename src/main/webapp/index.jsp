@@ -118,7 +118,7 @@
     </div>
   </div>
 
-  <div class="card" onclick="window.location.href='<%= request.getContextPath() %>/etudiant/listEtudiant'">
+  <div class="card" onclick="window.location.href='<%= request.getContextPath() %>/etudiant?action=list'">
     <div class="card-body">
       <div class="card-icon">
         <i class="fas fa-user-graduate"></i>
