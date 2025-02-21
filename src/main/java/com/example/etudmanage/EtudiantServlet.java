@@ -21,7 +21,7 @@ public class EtudiantServlet extends HttpServlet {
     private EtudiantDao etudiantDao;
 
     public void init() {
-        etudiantDao = new EtudiantDao();
+
     }
     public EtudiantServlet(){
         etudiantDao = new EtudiantDao();

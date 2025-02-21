@@ -42,25 +42,19 @@ public class EtudiantDao {
             stmtEtudiant.executeUpdate();
 
             // Retrieve the generated student ID
-            ResultSet generatedKeys = stmtEtudiant.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                int etudiantId = generatedKeys.getInt(1);
-                etudiant.setId(etudiantId);
+
 
                 try (PreparedStatement stmtInscription = connection.prepareStatement(sqlInscription)) {
                     for (Cour cour : etudiant.getCours()) {
                         stmtInscription.setInt(1, cour.getId());
-                        stmtInscription.setInt(2, etudiantId);
+                        stmtInscription.setInt(2, etudiant.getId());
                         stmtInscription.setDate(3, new java.sql.Date(System.currentTimeMillis())); // Enrollment date
                         stmtInscription.executeUpdate();
                     }
                 }
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new SQLException("Erreur lors de l'insertion de l'étudiant.");
-        }
+
     }
 
     // Retrieve all students
