@@ -1,12 +1,7 @@
 package DAO;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import model.Cour;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +52,7 @@ public class EduManageDAO {
                 int id = rs.getInt("idCour");
                 String nomCour = rs.getString("nomCour");
                 String descriprion = rs.getString("descriprion");
-                cours.add(new Cour(id, nomCour,descriprion));
+                cours.add(new Cour(id, nomCour));
             }
         } catch (SQLException e) {
             e.printStackTrace();

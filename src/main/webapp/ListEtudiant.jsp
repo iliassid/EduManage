@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="model.Etudiant" %>
+<%@ page import="model.Cour" %>
 <%@ page import="java.util.List" %>
 <html>
 <head>
-    <title>Student List</title>
+    <title>Liste des Étudiants</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
@@ -11,8 +12,7 @@
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
         <ul class="navbar-nav">
             <li><a href="<%= request.getContextPath() %>?action=listEtudiants" class="nav-link"> Étudiant</a></li>
-            <li><a href="<%=request.getContextPath()%>/" class="nav-link" >Home</a></li>
-
+            <li><a href="<%=request.getContextPath()%>/" class="nav-link">Home</a></li>
         </ul>
     </nav>
 </header>
@@ -21,10 +21,6 @@
     <a href="<%= request.getContextPath() %>/etudiant?action=new" class="btn btn-success">Ajouter un nouvel étudiant</a>
 
     <h2>Liste des étudiants</h2>
-    <div class="container text-left">
-
-
-    </div>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -32,15 +28,16 @@
             <th>Nom</th>
             <th>Prénom</th>
             <th>Email</th>
-            <th>Date of Birth</th>
+            <th>Date de Naissance</th>
+            <th>Cours Inscrits</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <%
-            List<Etudiant> listEtudiants = (List<Etudiant>) request.getAttribute("listEtudiants");
-            if (listEtudiants != null) {
-                for (Etudiant etudiant : listEtudiants) {
+            List<Etudiant> etudiants = (List<Etudiant>) request.getAttribute("etudiants");
+            if (etudiants != null) {
+                for (Etudiant etudiant : etudiants) {
         %>
         <tr>
             <td><%= etudiant.getId() %></td>
@@ -49,8 +46,26 @@
             <td><%= etudiant.getEmail() %></td>
             <td><%= etudiant.getNaissance() %></td>
             <td>
-                <a href="<%= request.getContextPath() %>/etudiant/edit?idEtudiant=<%= etudiant.getId() %>">Modifier</a>
-                <a href="<%= request.getContextPath() %>/etudiant/delete?idEtudiant=<%= etudiant.getId() %>">Supprimer</a>
+                <ul>
+                    <%
+                        List<Cour> cours = etudiant.getCours();
+                        if (cours != null && !cours.isEmpty()) {
+                            for (Cour cour : cours) {
+                    %>
+                    <li><%= cour.getNomCour() %></li>
+                    <%
+                        }
+                    } else {
+                    %>
+                    <li>Aucun cours inscrit</li>
+                    <%
+                        }
+                    %>
+                </ul>
+            </td>
+            <td>
+                <a href="<%= request.getContextPath() %>/etudiant/edit?idEtudiant=<%= etudiant.getId() %>" class="btn btn-warning btn-sm">Modifier</a>
+                <a href="<%= request.getContextPath() %>/etudiant/delete?idEtudiant=<%= etudiant.getId() %>" class="btn btn-danger btn-sm">Supprimer</a>
             </td>
         </tr>
         <%

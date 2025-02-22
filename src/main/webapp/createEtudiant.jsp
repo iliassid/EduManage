@@ -1,3 +1,5 @@
+<%@ page import="model.Cour" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -41,12 +43,20 @@
                     <label>Date de naissance</label>
                     <input type="date" class="form-control" name="dateNaissance" required>
                 </fieldset>
-                <fieldset class="form-group ">
-                    <select class="form-select selectField" aria-label="Default select example">
-                        <option selected>cour</option>
-                        <option value="1"></option>
-                        <option value="2"></option>
-                        <option value="3"></option>
+                <fieldset class="form-group">
+                    <label>Choisir un cours</label>
+                    <select class="form-select selectField" name="idCour">
+                        <option selected>Choisir un cours</option>
+                        <%
+                            List<Cour> coursList = (List<Cour>) request.getAttribute("coursList");
+                            if (coursList != null) {
+                                for (Cour cour : coursList) {
+                        %>
+                        <option value="<%= cour.getId() %>"><%= cour.getNomCour() %></option>
+                        <%
+                                }
+                            }
+                        %>
                     </select>
                 </fieldset>
                 <button type="submit" class="btn btn-success">Save</button>

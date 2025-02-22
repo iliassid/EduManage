@@ -3,6 +3,7 @@ package com.example.etudmanage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import DAO.EduManageDAO;
@@ -19,12 +20,15 @@ import model.Cour;
 @WebServlet("/etudiant")
 public class EtudiantServlet extends HttpServlet {
     private EtudiantDao etudiantDao;
+    private EduManageDAO eduManageDAO;
 
     public void init() {
 
     }
     public EtudiantServlet(){
+
         etudiantDao = new EtudiantDao();
+        eduManageDAO=new EduManageDAO();
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,7 +62,7 @@ public class EtudiantServlet extends HttpServlet {
 
             case "list":
                 try {
-                    listEtudiant(request,response);
+                    listEtudiants(request,response);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
@@ -72,21 +76,30 @@ public class EtudiantServlet extends HttpServlet {
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        List<Cour> coursList = eduManageDAO.selectAllCours(); // Récupération des cours
+        request.setAttribute("coursList", coursList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("createEtudiant.jsp");
 
         dispatcher.forward(request, response);
     }
 
 
-    private void listEtudiant(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-
-        System.out.println("it is working");
-        List<Etudiant> listEtudiants = etudiantDao.selectAllEtudiants();
-        request.setAttribute("listEtudiants", listEtudiants);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("ListEtudiant.jsp");
-        dispatcher.forward(request, response);
-    }
+//    private void listEtudiant(HttpServletRequest request, HttpServletResponse response)
+//            throws SQLException, IOException, ServletException {
+//
+//        System.out.println("it is working");
+//      List<Etudiant> listEtudiants = etudiantDao.selectAllEtudiants();
+//        request.setAttribute("listEtudiants", listEtudiants);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("ListEtudiant.jsp");
+//        dispatcher.forward(request, response);
+//    }
+private void listEtudiants(HttpServletRequest request, HttpServletResponse response)
+        throws SQLException, ServletException, IOException {
+    List<Etudiant> etudiants = etudiantDao.getAllEtudiants();
+    request.setAttribute("etudiants", etudiants); // Vérification du nom correct
+    RequestDispatcher dispatcher = request.getRequestDispatcher("ListEtudiant.jsp");
+    dispatcher.forward(request, response);
+}
 
     private void insertEtudiant(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
@@ -95,10 +108,16 @@ public class EtudiantServlet extends HttpServlet {
         String email = request.getParameter("email");
         String naissance = request.getParameter("dateNaissance");
 
-       // List<Cour> cours = new ArrayList<>();
-        Etudiant newEtudiant = new Etudiant(nom,prenom,email,naissance);
-        etudiantDao.insertEtudiant(newEtudiant);
+        String[] selectedCourses = request.getParameterValues("idCour");
+        List<Cour> coursList = new ArrayList<>();
+        if (selectedCourses != null) {
+            for (String id : selectedCourses) {
+                coursList.add(new Cour(Integer.parseInt(id), ""));
+            }
+        }
 
+        Etudiant newEtudiant = new Etudiant(nom, prenom, email, naissance, coursList);
+        etudiantDao.insertEtudiant(newEtudiant);
         response.sendRedirect(request.getContextPath() + "/etudiant?action=list");
     }
 

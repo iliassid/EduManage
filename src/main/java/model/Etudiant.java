@@ -17,6 +17,14 @@ public class Etudiant {
         this.naissance = naissance;
     }
 
+    public Etudiant(String nom, String prenom, String email, String naissance, List<Cour> cours) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.naissance = naissance;
+        this.cours = cours;
+    }
+
     public Etudiant(int id, List<Cour> cours, String naissance, String email, String prenom, String nom) {
         this.id = id;
         this.cours = cours;

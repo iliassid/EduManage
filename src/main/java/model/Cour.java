@@ -5,7 +5,7 @@ public class Cour {
     private String nomCour;
     private String descriprion;
 
-    public Cour(int id, String nomCour, String descriprion) {
+    public Cour(int id, String nomCour) {
         this.id = id;
         this.nomCour = nomCour;
         this.descriprion = descriprion;
