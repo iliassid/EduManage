@@ -1,5 +1,5 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
   <title>Application de gestion de cours</title>
@@ -17,26 +17,39 @@
 <div class="container col-md-5">
   <div class="card">
     <div class="card-body">
-      <h1> Ajouter des cours</h1>
+      <c:if test="${cour != null}">
+      <form action="update" method="post">
+        </c:if>
+        <c:if test="${cour == null}">
+        <form action="insert" method="post">
+          </c:if>
 
-      <form action="<%= request.getContextPath() %>/insert" method="post">
-        <input type="hidden" name="id" >
+          <h2>
+            <c:if test="${cour != null}">
+              Modifier un cours
+            </c:if>
+            <c:if test="${cour == null}">
+              Ajouter un nouveau cours
+            </c:if>
+          </h2>
 
-        <fieldset class="form-group">
-          <label>Nom Cours</label>
-          <input type="text" class="form-control" name="nomCour"  required>
-        </fieldset>
-        <fieldset class="form-group">
-          <label>Description</label>
-          <input type="text" class="form-control" name="descriprion"  required>
-        </fieldset>
+            <c:if test="${not empty cour}">
+              <input type="hidden" name="idCour" value="<c:out value='${cour.idCour}' />" />
+            </c:if>
 
 
-        <button type="submit" class="btn <%= "btn-warning"  %>">
-        save
-        </button>
+            <fieldset class="form-group">
+            <label>Nom du cours</label>
+            <input type="text" class="form-control" name="nomCour" value="<c:out value='${cour.nomCour}' />" required>
+          </fieldset>
 
-      </form>
+          <fieldset class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" name="descriprion" value="<c:out value='${cour.descriprion}' />" required>
+          </fieldset>
+
+          <button type="submit" class="btn btn-success">Enregistrer</button>
+        </form>
     </div>
   </div>
 </div>

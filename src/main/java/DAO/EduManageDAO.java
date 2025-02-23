@@ -59,4 +59,52 @@ public class EduManageDAO {
         }
         return cours;
     }
+    public boolean deleteCours(Long id) throws SQLException {
+        boolean rowDeleted;
+         String  DELETE_USERS_SQL  =  " delete FROM cours where idCour = ?; " ;
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
+            statement.setLong(1, id);
+            rowDeleted = statement.executeUpdate() > 0;
+        }
+        return rowDeleted;
+    }
+    public boolean updateCours(Cour cour) throws SQLException {
+        boolean rowUpdated;
+        String UPDATE_USERS_SQL = "UPDATE cours SET nomCour = ?, descriprion = ? WHERE idCour = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL)) {
+            statement.setString(1, cour.getNomCour());
+            statement.setString(2, cour.getDescriprion());
+            statement.setInt(3, cour.getId()); // Ajout de l'ID manquant
+            rowUpdated = statement.executeUpdate() > 0;
+        }
+        return rowUpdated;
+    }
+
+    public Cour selectCours(int id) {
+        Cour cour = null;
+        String sql = "SELECT * FROM cours WHERE idCour = ?";
+        try (Connection connection = getConnection();
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+            preparedStatement.setLong(1, id);
+            System.out.println(preparedStatement);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                String nom = rs.getString("nomCour");
+                String descriprion = rs.getString("descriprion");
+
+
+                cour = new Cour(id, nom, descriprion);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cour;
+    }
 }

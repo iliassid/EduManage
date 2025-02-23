@@ -11,7 +11,11 @@ public class Cour {
         this.descriprion = descriprion;
     }
 
-
+    public Cour(int id, String nomCour, String descriprion) {
+        this.id = id;
+        this.nomCour = nomCour;
+        this.descriprion = descriprion;
+    }
 
     public Cour(String nomCour, String descriprion) {
         this.nomCour = nomCour;
