@@ -8,7 +8,7 @@
     <style>
         .selectField{
             width: 565px;
-            height: 50px;
+            height: 150px; /* Increased height to accommodate multiple selections */
             border-radius: 5px;
             border-color:darkgrey;
         }
@@ -44,9 +44,8 @@
                     <input type="date" class="form-control" name="dateNaissance" required>
                 </fieldset>
                 <fieldset class="form-group">
-                    <label>Choisir un cours</label>
-                    <select class="form-select selectField" name="idCour">
-                        <option selected>Choisir un cours</option>
+                    <label>Choisir un ou plusieurs cours</label>
+                    <select class="form-select selectField" name="idCour[]" multiple>
                         <%
                             List<Cour> coursList = (List<Cour>) request.getAttribute("coursList");
                             if (coursList != null) {
