@@ -18,7 +18,8 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
         <ul class="navbar-nav">
-            <li><a href="<%=request.getContextPath()%>/list" class="nav-link">Étudiantes</a></li>
+            <li><a href="<%= request.getContextPath() %>/list" class="nav-link">Etudiants</a></li>
+            <li><a href="<%=request.getContextPath() %>/" class="nav-link">Home</a></li>
         </ul>
     </nav>
 </header>
@@ -32,7 +33,7 @@
                     <input type="text" class="form-control" name="nomEtudiant" required>
                 </fieldset>
                 <fieldset class="form-group">
-                    <label>Prénom</label>
+                    <label>Prenom</label>
                     <input type="text" class="form-control" name="prenom" required>
                 </fieldset>
                 <fieldset class="form-group">
@@ -58,7 +59,7 @@
                         %>
                     </select>
                 </fieldset>
-                <button type="submit" class="btn btn-success">Save</button>
+                <button type="submit" class="btn btn-success">Enregistrer</button>
             </form>
         </div>
     </div>

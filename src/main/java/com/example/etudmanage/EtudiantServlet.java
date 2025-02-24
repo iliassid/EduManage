@@ -110,12 +110,14 @@ public class EtudiantServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("idEtudiant"));
         Etudiant etudiant = etudiantDao.selectEtudiant(id);
         List<Cour> coursList = eduManageDAO.selectAllCours();
 
+        // Set attributes to be used in the JSP
         request.setAttribute("etudiant", etudiant);
         request.setAttribute("coursList", coursList);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("editEtudiant.jsp");
         dispatcher.forward(request, response);
     }
@@ -123,7 +125,7 @@ public class EtudiantServlet extends HttpServlet {
     private void updateEtudiant(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         // Retrieve student details
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("idEtudiant"));
         String nom = request.getParameter("nomEtudiant");
         String prenom = request.getParameter("prenom");
         String email = request.getParameter("email");
@@ -152,7 +154,7 @@ public class EtudiantServlet extends HttpServlet {
 
     private void deleteEtudiant(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("idEtudiant"));
         etudiantDao.deleteEtudiant(id);
         response.sendRedirect(request.getContextPath() + "/etudiant?action=list");
     }
