@@ -52,7 +52,7 @@ public class EduManageDAO {
                 int id = rs.getInt("idCour");
                 String nomCour = rs.getString("nomCour");
                 String descriprion = rs.getString("descriprion");
-                cours.add(new Cour(id, nomCour));
+                cours.add(new Cour(id, nomCour,descriprion));
             }
         } catch (SQLException e) {
             e.printStackTrace();

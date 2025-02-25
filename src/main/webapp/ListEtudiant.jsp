@@ -11,14 +11,14 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
         <ul class="navbar-nav">
-            <li><a href="<%= request.getContextPath() %>?action=listEtudiants" class="nav-link"> Etudiant</a></li>
+            <li><a href="<%= request.getContextPath() %>?action=listEtudiants" class="nav-link"> Étudiant</a></li>
             <li><a href="<%=request.getContextPath()%>/" class="nav-link">Home</a></li>
         </ul>
     </nav>
 </header>
 <br>
 <div class="container">
-    <a href="<%= request.getContextPath() %>/etudiant?action=new" class="btn btn-success">Ajouter un nouvel etudiant</a>
+    <a href="<%= request.getContextPath() %>/etudiant?action=new" class="btn btn-success">Ajouter un nouvel étudiant</a>
 
     <h2>Liste des étudiants</h2>
     <table class="table table-bordered">
@@ -26,7 +26,7 @@
         <tr>
             <th>ID</th>
             <th>Nom</th>
-            <th>Prenom</th>
+            <th>Prénom</th>
             <th>Email</th>
             <th>Date de Naissance</th>
             <th>Cours Inscrits</th>
@@ -64,8 +64,8 @@
                 </ul>
             </td>
             <td>
-                <a href="<%= request.getContextPath() %>/etudiant?action=edit&idEtudiant=<%= etudiant.getId() %>" class="btn btn-warning btn-sm">Modifier</a>
-                <a href="<%= request.getContextPath() %>/etudiant?action=delete&idEtudiant=<%= etudiant.getId() %>" class="btn btn-danger btn-sm">Supprimer</a>
+                <a href="<%= request.getContextPath() %>/etudiant/edit?idEtudiant=<%= etudiant.getId() %>" class="btn btn-warning btn-sm">Modifier</a>
+                <a href="<%= request.getContextPath() %>/etudiant/delete?idEtudiant=<%= etudiant.getId() %>" class="btn btn-danger btn-sm">Supprimer</a>
             </td>
         </tr>
         <%

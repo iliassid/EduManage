@@ -8,7 +8,7 @@
     <style>
         .selectField{
             width: 565px;
-            height: 150px; /* Increased height to accommodate multiple selections */
+            height: 50px;
             border-radius: 5px;
             border-color:darkgrey;
         }
@@ -18,8 +18,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
         <ul class="navbar-nav">
-            <li><a href="<%= request.getContextPath() %>/list" class="nav-link">Etudiants</a></li>
-            <li><a href="<%=request.getContextPath() %>/" class="nav-link">Home</a></li>
+            <li><a href="<%=request.getContextPath()%>/list" class="nav-link">Étudiantes</a></li>
         </ul>
     </nav>
 </header>
@@ -33,7 +32,7 @@
                     <input type="text" class="form-control" name="nomEtudiant" required>
                 </fieldset>
                 <fieldset class="form-group">
-                    <label>Prenom</label>
+                    <label>Prénom</label>
                     <input type="text" class="form-control" name="prenom" required>
                 </fieldset>
                 <fieldset class="form-group">
@@ -45,8 +44,9 @@
                     <input type="date" class="form-control" name="dateNaissance" required>
                 </fieldset>
                 <fieldset class="form-group">
-                    <label>Choisir un ou plusieurs cours</label>
-                    <select class="form-select selectField" name="idCour[]" multiple>
+                    <label>Choisir un cours</label>
+                    <select class="form-select selectField" name="idCour">
+                        <option selected>Choisir un cours</option>
                         <%
                             List<Cour> coursList = (List<Cour>) request.getAttribute("coursList");
                             if (coursList != null) {
@@ -59,7 +59,7 @@
                         %>
                     </select>
                 </fieldset>
-                <button type="submit" class="btn btn-success">Enregistrer</button>
+                <button type="submit" class="btn btn-success">Save</button>
             </form>
         </div>
     </div>
