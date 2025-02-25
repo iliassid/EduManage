@@ -82,6 +82,14 @@
             <label for="password">mot de passe</label>
             <input class="myinput" type="password" id="password">
         </div>
+        <div>
+            <label for="">select votre role</label>
+            <select name="" id="">
+                <option value="select" disabled selected>select</option>
+                <option value="1">admin</option>
+                <option value="2">etudiant</option>
+            </select>
+        </div>
 
 
         <button class="mybtn">envoyer</button>
