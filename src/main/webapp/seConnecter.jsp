@@ -65,8 +65,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
         <ul class="navbar-nav">
-            <li><a href="" class="nav-link">s'inscrire</a></li>
-            <li><a href="" class="nav-link">se connecter</a></li>
+            <li><a href="<%=request.getContextPath()%>/" class="nav-link">se connecter</a></li>
         </ul>
     </nav>
 </header>
@@ -76,11 +75,11 @@
     <form class="myform" action="">
         <div>
             <label for="name">votre nom:</label>
-            <input class="myinput" type="text" id="name">
+            <input class="myinput" type="text" id="name" required>
         </div>
         <div>
             <label for="password">mot de passe</label>
-            <input class="myinput" type="password" id="password">
+            <input class="myinput" type="password" id="password" required>
         </div>
 
 
