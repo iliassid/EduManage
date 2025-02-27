@@ -5,11 +5,11 @@ import jakarta.servlet.annotation.WebFilter;
 
 import java.io.IOException;
 
-@WebFilter(filterName = "Filter")
+@WebFilter("/Login")
 
 
 
-public class IFilter implements Filter {
+public class Login implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
     public void destroy() {
