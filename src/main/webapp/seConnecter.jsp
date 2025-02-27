@@ -72,19 +72,18 @@
 
 <div class="mydiv">
     <h1>se connecter</h1>
-    <form class="myform" action="">
+    <form class="myform" action="seConnecter" method="POST">
         <div>
-            <label for="name">votre nom:</label>
-            <input class="myinput" type="text" id="name" required>
+            <label for="username">Votre nom:</label>
+            <input class="myinput" type="text" id="username" name="username" required>
         </div>
         <div>
-            <label for="password">mot de passe</label>
-            <input class="myinput" type="password" id="password" required>
+            <label for="password">Mot de passe</label>
+            <input class="myinput" type="password" id="password" name="password" required>
         </div>
-
-
-        <button class="mybtn">entrer</button>
+        <button class="mybtn" type="submit">Entrer</button>
     </form>
+
 </div>
 
 </body>
