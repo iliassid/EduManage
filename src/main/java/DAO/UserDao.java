@@ -30,6 +30,7 @@ public class UserDao {
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             ResultSet rs = preparedStatement.executeQuery();
+
             if (rs.next()) {
                 int id = rs.getInt("id");
                 String username = rs.getString("username");

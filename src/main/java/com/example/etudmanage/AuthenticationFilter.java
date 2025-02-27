@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebFilter
+@WebFilter("/*")
 public class AuthenticationFilter implements Filter {
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -27,10 +27,9 @@ public class AuthenticationFilter implements Filter {
                     return;
                 }
             }
-            String path = req.getContextPath() + "/seConnecter.jsp";
-            resp.sendRedirect(path);
 
-            resp.sendRedirect(path);
+
+            resp.sendRedirect("seConnecter");
         }
     }
 }
